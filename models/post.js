@@ -1,6 +1,8 @@
 import mongoose from 'mongoose'
 
-const postSchema = new mongoose.Schema({
+const Schema = mongoose.Schema
+
+const postSchema = new Schema({
   title: {type: String, required: true},
   Category: {type: mongoose.Schema.Types.ObjectId, ref:"Category"},
   Code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
