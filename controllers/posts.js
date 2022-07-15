@@ -15,7 +15,14 @@ function create(req, res) {
     res.status(500).json({err: err.errmsg})
   })
 }
-
+function index(req, res) {
+  Post.find({})
+  .populate('author')
+  .then(posts => {
+    res.json(posts)
+  })
+}
 export {
-  create
+  create,
+  index,
 }
