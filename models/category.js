@@ -1,9 +1,7 @@
 import mongoose from 'mongoose'
 
 const categorySchema = new mongoose.Schema({
-  javascript: { type: String },
-  css: { type: String },
-  html: { type: String },
+  category: { type: String },
 },{
   timestamps: true,
 })
