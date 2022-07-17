@@ -22,7 +22,27 @@ function index(req, res) {
     res.json(posts)
   })
 }
+function update(req, res) {
+  Post.findById(req.params.id)
+  .then(post => {
+    if(post.author._id.equals(req.user.profile)) {
+    Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
+    .populate('author')
+    .then(updatedPost => {
+      res.json(updatedPost)
+    })
+  } else {
+    res.status(401).json({err: "Not authorized!"})
+  }
+  })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
+}
+
 export {
   create,
   index,
+  update
 }
