@@ -15,6 +15,7 @@ function create(req, res) {
     res.status(500).json({err: err.errmsg})
   })
 }
+
 function index(req, res) {
   Post.find({})
   .populate('author')
@@ -22,6 +23,19 @@ function index(req, res) {
     res.json(posts)
   })
 }
+
+function createComment (req, res) {
+  Post.findById(req.params.id)
+  .then(post => {
+    post.comments.push(req.body)
+    comments.save()
+    .then(() => {
+      res.redirect(`/posts/${post._id}`)
+    })
+  })
+}
+
+
 function update(req, res) {
   Post.findById(req.params.id)
   .then(post => {
@@ -60,5 +74,5 @@ export {
   create,
   index,
   update,
-  createCategory
+  createComment
 }
