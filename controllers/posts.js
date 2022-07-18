@@ -74,5 +74,6 @@ export {
   create,
   index,
   update,
-  createComment
+  createComment,
+  createCategory
 }
