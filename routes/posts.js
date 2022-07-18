@@ -10,6 +10,7 @@ router.use(decodeUserFromToken)
 router.post('/', checkAuth, postsCtrl.create)
 router.post('/:id/category', checkAuth, postsCtrl.createCategory)
 router.put('/:id', checkAuth, postsCtrl.update)
+router.delete('/:id', checkAuth, postsCtrl.delete)
 
 export {
   router
