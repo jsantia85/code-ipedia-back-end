@@ -18,10 +18,10 @@ const categorySchema = new mongoose.Schema({
 
 const postSchema = new Schema({
   title: {type: String, required: true},
-  Code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
+  code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
   author: {type: mongoose.Schema.Types.ObjectId, ref:"Profile"},
   comments: [commentSchema],
-  categories:[categorySchema]
+  category: [categorySchema]
 },{
   timestamps: true,
 })
