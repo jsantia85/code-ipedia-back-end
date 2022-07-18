@@ -1,7 +1,12 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-const commentSchema = new mongoose.Schema ({
+const codeSchema = new Schema ({
+  code: String,
+  caption: String,
+})
+
+const commentSchema = new Schema ({
   comments: String, 
   author: {
     type: mongoose.Schema.Types.ObjectId, 
@@ -9,7 +14,7 @@ const commentSchema = new mongoose.Schema ({
   },
 })
 
-const categorySchema = new mongoose.Schema({
+const categorySchema = new Schema({
   category: { type: String },
 },{
   timestamps: true,
@@ -18,10 +23,10 @@ const categorySchema = new mongoose.Schema({
 
 const postSchema = new Schema({
   title: {type: String, required: true},
-  code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
+  Code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
   author: {type: mongoose.Schema.Types.ObjectId, ref:"Profile"},
   comments: [commentSchema],
-  category: [categorySchema]
+  categories:[categorySchema]
 },{
   timestamps: true,
 })
