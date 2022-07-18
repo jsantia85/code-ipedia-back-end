@@ -8,6 +8,7 @@ router.get('/', postsCtrl.index)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, postsCtrl.create)
+router.post('/:id/category',postsCtrl.createCategory)
 router.put('/:id', checkAuth, postsCtrl.update)
 
 export {
