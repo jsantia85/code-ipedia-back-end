@@ -1,3 +1,4 @@
+import MongooseServerSelectionError from 'mongoose/lib/error/serverSelection.js'
 import { Post } from '../models/post.js'
 
 function create(req, res) {
@@ -22,7 +23,21 @@ function index(req, res) {
     res.json(posts)
   })
 }
+
+function createComment (req, res) {
+  Post.findById(req.params.id)
+  .then(post => {
+    post.comments.push(req.body)
+    comments.save()
+    .then(() => {
+      res.redirect(`/posts/${post._id}`)
+    })
+  })
+}
+
+
 export {
   create,
   index,
+  createComment,
 }
