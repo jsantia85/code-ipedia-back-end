@@ -13,7 +13,7 @@ const postSchema = new Schema({
   Code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
   author: {type: mongoose.Schema.Types.ObjectId, ref:"Profile"},
   comments: {type: mongoose.Schema.Types.ObjectId, ref:"Comments"},
-  categories:[categorySchema]
+  category:[categorySchema]
 },{
   timestamps: true,
 })
