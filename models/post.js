@@ -1,4 +1,5 @@
 import mongoose from 'mongoose'
+const Schema = mongoose.Schema
 
 const categorySchema = new mongoose.Schema({
   category: { type: String },
@@ -6,7 +7,8 @@ const categorySchema = new mongoose.Schema({
   timestamps: true,
 })
 
-const postSchema = new mongoose.Schema({
+
+const postSchema = new Schema({
   title: {type: String, required: true},
   Code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
   author: {type: mongoose.Schema.Types.ObjectId, ref:"Profile"},
