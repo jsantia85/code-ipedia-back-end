@@ -22,6 +22,19 @@ function index(req, res) {
     res.json(posts)
   })
 }
+
+function createComment (req, res) {
+  Post.findById(req.params.id)
+  .then(post => {
+    post.comments.push(req.body)
+    comments.save()
+    .then(() => {
+      res.redirect(`/posts/${post._id}`)
+    })
+  })
+}
+
+
 function update(req, res) {
   Post.findById(req.params.id)
   .then(post => {
@@ -44,5 +57,6 @@ function update(req, res) {
 export {
   create,
   index,
-  update
+  update,
+  createComment
 }

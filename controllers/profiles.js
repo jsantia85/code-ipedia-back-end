@@ -29,6 +29,8 @@ function addPhoto(req, res) {
   })
 }
 
+
+
 export { 
   index,
   addPhoto,

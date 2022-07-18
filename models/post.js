@@ -1,6 +1,14 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
+const commentSchema = new mongoose.Schema ({
+  comments: String, 
+  author: {
+    type: mongoose.Schema.Types.ObjectId, 
+    ref:'Profile'
+  },
+})
+
 const categorySchema = new mongoose.Schema({
   category: { type: String },
 },{
@@ -12,7 +20,7 @@ const postSchema = new Schema({
   title: {type: String, required: true},
   Code: {type: mongoose.Schema.Types.ObjectId, ref:"Code"},
   author: {type: mongoose.Schema.Types.ObjectId, ref:"Profile"},
-  comments: {type: mongoose.Schema.Types.ObjectId, ref:"Comments"},
+  comments: [commentSchema],
   categories:[categorySchema]
 },{
   timestamps: true,
