@@ -8,8 +8,8 @@ router.get('/', postsCtrl.index)
 /*---------- Protected Routes ----------*/
 router.use(decodeUserFromToken)
 router.post('/', checkAuth, postsCtrl.create)
-router.post('/:id/comments', checkAuth, postsCtrl.createComment)
 router.put('/:id', checkAuth, postsCtrl.update)
+router.post('/:id', checkAuth, postsCtrl.createComment)
 
 export {
   router
