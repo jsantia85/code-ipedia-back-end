@@ -25,15 +25,21 @@ function index(req, res) {
 }
 
 function createComment (req, res) {
-  Post.findById(req.params.id)
+  req.body.owner = req.user.profile
+  Post.create(req.body)
   .then(post => {
-    post.comments.push(req.body)
-    comments.save()
-    .then(() => {
-      res.redirect(`/posts/${post._id}`)
+    Post.findById(post._id)
+    .populate('author')
+    .then(populatedComment => {
+      res.json(populatedComment)
     })
   })
+  .catch(err => {
+    console.log(err)
+    res.status(500).json({err: err.errmsg})
+  })
 }
+
 
 
 function update(req, res) {
