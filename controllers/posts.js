@@ -42,23 +42,20 @@ function createComment (req, res) {
 
 
 
-function update(req, res) {
-  Post.findById(req.params.id)
-  .then(post => {
-    if(post.author._id.equals(req.user.profile)) {
-    Post.findByIdAndUpdate(req.params.id, req.body, {new: true})
-    .populate('author')
-    .then(updatedPost => {
+async function update(req, res) {
+  console.log(req.body)
+  try {
+    const post = await Post.findById(req.params.id)
+    if (post.author._id.equals(req.user.profile)) {
+      const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, { new: true }).populate('author')
       res.json(updatedPost)
-    })
-  } else {
-    res.status(401).json({err: "Not authorized!"})
-  }
-  })
-  .catch(err => {
+    } else {
+      res.status(401).json({ err: "Not authorized!" })
+    }
+  } catch (err) {
     console.log(err)
-    res.status(500).json({err: err.errmsg})
-  })
+    res.status(500).json({ err: err.errmsg })
+  }
 }
 
 function createCategory(req,res) {
