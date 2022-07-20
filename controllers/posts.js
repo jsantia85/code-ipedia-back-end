@@ -24,19 +24,19 @@ function index(req, res) {
   })
 }
 
+
 function createComment (req, res) {
-  req.body.owner = req.user.profile
-  Post.create(req.body)
+  req.body.author = req.user.profile
+  Post.findById(req.params.id)
   .then(post => {
-    Post.findById(post._id)
-    .populate('author')
-    .then(populatedComment => {
-      res.json(populatedComment)
+    post.comments.push(req.body)
+    post.save()
+    .then(() => {
+      res.json(post)
     })
   })
   .catch(err => {
     console.log(err)
-    res.status(500).json({err: err.errmsg})
   })
 }
 
