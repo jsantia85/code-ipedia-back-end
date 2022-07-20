@@ -1,10 +1,6 @@
 import mongoose from 'mongoose'
 const Schema = mongoose.Schema
 
-// const codeSchema = new Schema ({
-//   code: String,
-//   caption: String,
-// })
 
 const commentSchema = new Schema ({
   comments: String, 
