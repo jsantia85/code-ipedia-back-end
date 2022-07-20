@@ -58,21 +58,6 @@ async function update(req, res) {
   }
 }
 
-function createCategory(req,res) {
-  Post.findById(req.params.id)
-  .then(post => {
-    post.category.push(req.body)
-    post.save()
-    .then(posts => {
-      res.json(posts)
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({err: err.errmsg})
-    })
-  })
-}
-
 function deleteOne(req, res) {
   Post.findById(req.params.id)
   .then(post => {
@@ -96,6 +81,5 @@ export {
   index,
   update,
   createComment,
-  createCategory,
   deleteOne as delete,
 }
